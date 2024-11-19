@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["packages/conductor/src/*"]
+    }
+  },
+  "references": [{ "path": "packages/conductor" }, { "path": "examples/basic" }]
+}

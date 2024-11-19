@@ -1,0 +1,7 @@
+# build files
+dist
+node_modules
+.yarn
+
+# envs
+.env

@@ -1,0 +1,24 @@
+{
+  "name": "@wavequery/conductor-example-basic",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "build": "rimraf dist && tsc",
+    "start": "ts-node dist/01-text-analysis.js",
+    "dev:01": "tsx src/01-text-analysis-agent.ts",
+    "dev:02": "tsx src/02-code-review-chain.ts"
+  },
+  "dependencies": {
+    "@wavequery/conductor": "^0.0.1"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.5",
+    "rimraf": "^5.0.5",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "tsconfig-paths": "^4.2.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.3.3"
+  }
+}

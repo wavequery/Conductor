@@ -1,0 +1,32 @@
+{
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "examples/*"
+  ],
+  "scripts": {
+    "build": "yarn workspaces foreach -ptv run build",
+    "test": "yarn workspaces foreach -ptv run test",
+    "lint": "yarn workspaces foreach -ptv run lint",
+    "examples": "yarn workspaces foreach -pv --from '@wavequery/conductor-examples-*' run start",
+    "example:basic": "yarn workspace @wavequery/conductor-examples-basic start",
+    "examples:build": "yarn workspaces foreach -ptv run build",
+    "examples:dev": "yarn workspaces foreach -pv --from '@wavequery/conductor-examples-*' run dev",
+    "examples:clean": "yarn workspaces foreach -pv --from '@wavequery/conductor-examples-*' run clean"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.19",
+    "@typescript-eslint/eslint-plugin": "^7.0.1",
+    "@typescript-eslint/parser": "^7.0.1",
+    "eslint": "^8.56.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.3.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wavequery/conductor.git"
+  },
+  "homepage": "https://github.com/wavequery/conductor#readme",
+  "author": "amin@wavequery.com",
+  "license": "MIT"
+}

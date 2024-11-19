@@ -1,0 +1,33 @@
+{
+    "compilerOptions": {
+      "target": "ES2020",
+      "lib": ["es2020", "dom"],
+      "declaration": true,
+      "outDir": "./dist",
+      "rootDir": "./src",
+      "strict": false,
+      "moduleResolution": "node",
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "useUnknownInCatchVariables": false,
+      "noImplicitAny": true,
+      "forceConsistentCasingInFileNames": true,
+      "resolveJsonModule": true,
+      "sourceMap": true,
+      "composite": true,
+      "baseUrl": ".",
+      "paths": {
+        "@/*": ["src/*"],
+        "@/llm": ["src/llm/*"],
+        "@/agents": ["src/agents/*"],
+        "@/evaluation": ["src/evaluation/*"],
+        "@/tools": ["src/tools/*"],
+        "@/memory": ["src/memory/*"],
+        "@/visualization": ["src/visualization/*"],
+        "@/utils": ["src/utils/*"],
+        "@/types": ["src/types/*"],
+      }
+    },
+    "include": ["src/**/*", "**/*.test.ts"],
+    "exclude": ["node_modules", "dist"]
+}

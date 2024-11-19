@@ -1,0 +1,49 @@
+Arguments: 
+  /Users/aminkhorrami/.nvm/versions/node/v20.15.1/bin/node /opt/homebrew/Cellar/yarn/1.22.19/libexec/bin/yarn.js set version latest
+
+PATH: 
+  /Users/aminkhorrami/.pyenv/shims:/opt/homebrew/opt/libpq/bin:/usr/local/opt/libpq/bin:/usr/local/opt/libpq/bin:/usr/local/opt/libpq/bin:/opt/homebrew/opt/postgresql@16/bin:/opt/homebrew/bin:/Users/aminkhorrami/.nvm/versions/node/v20.15.1/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Library/Apple/usr/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  20.15.1
+
+Platform: 
+  darwin arm64
+
+Trace: 
+  TypeError: Cannot create property 'yarn-path' on string 'v20.15.1'
+      at /opt/homebrew/Cellar/yarn/1.22.19/libexec/lib/cli.js:86390:25
+      at Generator.next (<anonymous>)
+      at step (/opt/homebrew/Cellar/yarn/1.22.19/libexec/lib/cli.js:310:30)
+      at /opt/homebrew/Cellar/yarn/1.22.19/libexec/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "@wavequery/conductor-example-basic",
+    "private": true,
+    "version": "0.0.0",
+    "scripts": {
+      "build": "rimraf dist && tsc",
+      "start": "rimraf dist && tsc && node dist/text-analysis.js",
+      "dev": "ts-node-dev --respawn src/text-analysis.ts"
+    },
+    "dependencies": {
+     "@wavequery/conductor": "workspace:*"
+    },
+    "devDependencies": {
+      "dotenv": "^16.4.5",
+      "rimraf": "^5.0.5",
+      "ts-node": "^10.9.2",
+      "ts-node-dev": "^2.0.0",
+      "typescript": "^5.3.3"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

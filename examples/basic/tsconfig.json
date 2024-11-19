@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": ["es2020", "dom"],
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "composite": true,
+    "baseUrl": "../../",
+    "paths": {
+      "@/*": ["packages/conductor/src/*"]
+    }
+  },
+  "include": ["src/**/*"],
+  "references": [{ "path": "../../packages/conductor" }]
+}
