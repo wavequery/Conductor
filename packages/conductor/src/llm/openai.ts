@@ -34,7 +34,7 @@ export class OpenAIProvider implements LLMProvider {
       const response = await this.client.chat.completions.create({
         model: options.model || this.defaultModel,
         messages: [{ role: "user", content: prompt }],
-        temperature: options.temperature ?? 0.7,
+        temperature: options.temperature ?? 0.1,
         max_tokens: options.maxTokens,
         response_format: options.responseFormat
           ? { type: options.responseFormat }
@@ -66,7 +66,7 @@ export class OpenAIProvider implements LLMProvider {
       const response = await this.client.chat.completions.create({
         model: options.model || this.defaultModel,
         messages: [{ role: "user", content: prompt }],
-        temperature: options.temperature ?? 0.7,
+        temperature: options.temperature ?? 0.1,
         max_tokens: options.maxTokens,
         tools: functions.map((fn) => ({
           type: "function",

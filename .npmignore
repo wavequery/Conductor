@@ -1,0 +1,14 @@
+src/
+node_modules/
+tests/
+.github/
+.git/
+.gitignore
+.eslintrc
+.prettierrc
+jest.config.js
+tsconfig*.json
+*.log
+*.tgz
+coverage/
+docs/

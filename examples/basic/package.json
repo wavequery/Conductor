@@ -6,8 +6,7 @@
   "scripts": {
     "build": "rimraf dist && tsc",
     "start": "ts-node dist/01-text-analysis.js",
-    "dev:01": "tsx src/01-text-analysis-agent.ts",
-    "dev:02": "tsx src/02-code-review-chain.ts"
+    "dev:01": "tsx src/01-text-analysis-agent.ts"
   },
   "dependencies": {
     "@wavequery/conductor": "^0.0.1"

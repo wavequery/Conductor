@@ -54,7 +54,7 @@ export class Agent extends EventEmitter {
       }
     }
 
-    return currentInput;
+    return { output: currentInput, steps: this.steps };
   }
 
   protected async executeStep(input: any): Promise<AgentStep> {
@@ -63,7 +63,6 @@ export class Agent extends EventEmitter {
     try {
       const { action, toolName } = await this.decideTool(input);
       const tool = this.getTool(toolName);
-
       const output = await tool.execute(action);
 
       return {
@@ -116,22 +115,23 @@ export class Agent extends EventEmitter {
     const tools = this.config.tools.map((t) => ({
       name: t.name,
       description: t.description,
+      tool_arguments: t.input,
     }));
 
     return `Given the following input: ${JSON.stringify(input)}
             Available tools: ${JSON.stringify(tools)}
             Select the most appropriate tool and specify the action.
-            Response format: { "tool": "tool_name", "action": {...} }`;
+            Response format: { "tool": "tool_name", "action": "arguments to be passed to the tool" }`;
   }
 
   protected shouldStop(step: AgentStep): boolean {
     return false;
   }
 
-  protected createResponse(output: any): AgentResponse {
+  protected createResponse(response: any): AgentResponse {
     return {
-      output,
-      steps: this.steps,
+      output: response.output,
+      steps: response.steps,
       metrics: {
         totalTokens: 0, // TODO: Implement token counting
         totalCost: 0, // TODO: Implement cost calculation

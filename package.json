@@ -22,6 +22,22 @@
     "prettier": "^3.2.5",
     "typescript": "^5.3.3"
   },
+  "keywords": [
+    "llm",
+    "agent",
+    "orchestration",
+    "ai",
+    "d3",
+    "anthropic",
+    "openai",
+    "transformers",
+    "visualization",
+    "testing",
+    "chat",
+    "chatgpt",
+    "evals",
+    "websocket"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wavequery/conductor.git"

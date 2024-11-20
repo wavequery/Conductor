@@ -5,7 +5,8 @@ export enum ToolType {
     VALIDATION = 'VALIDATION',
     GENERATION = 'GENERATION',
     EXTRACTION = 'EXTRACTION',
-    
+    SEARCH = 'SEARCH',
+
     // Data-specific tools
     DATA_LOADER = 'DATA_LOADER',
     DATA_CLEANER = 'DATA_CLEANER',

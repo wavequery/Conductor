@@ -1,0 +1,115 @@
+{
+  "summary": {
+    "averageScore": 0.8083333333333335,
+    "totalMetrics": 12,
+    "timestamp": "2024-11-20T15:45:19.911Z"
+  },
+  "results": [
+    {
+      "metricName": "sentimentAccuracy",
+      "score": 1,
+      "metadata": {
+        "expected": "positive",
+        "actual": "positive"
+      },
+      "timestamp": "2024-11-20T15:45:18.144Z"
+    },
+    {
+      "metricName": "conceptsCoverage",
+      "score": 0.6,
+      "metadata": {
+        "found": 3,
+        "expected": 5
+      },
+      "timestamp": "2024-11-20T15:45:18.144Z"
+    },
+    {
+      "metricName": "entityRecognition",
+      "score": 1,
+      "metadata": {
+        "found": 1,
+        "expected": 1
+      },
+      "timestamp": "2024-11-20T15:45:18.144Z"
+    },
+    {
+      "metricName": "emotionalToneAccuracy",
+      "score": 0,
+      "metadata": {
+        "expected": "excited",
+        "actual": "enthusiastic"
+      },
+      "timestamp": "2024-11-20T15:45:18.144Z"
+    },
+    {
+      "metricName": "responseTime",
+      "score": 0.5,
+      "metadata": {
+        "duration": 3234
+      },
+      "timestamp": "2024-11-20T15:45:18.144Z"
+    },
+    {
+      "metricName": "confidenceAccuracy",
+      "score": 0.9500000000000001,
+      "metadata": {
+        "expected": 0.9,
+        "actual": 0.95
+      },
+      "timestamp": "2024-11-20T15:45:18.144Z"
+    },
+    {
+      "metricName": "sentimentAccuracy",
+      "score": 1,
+      "metadata": {
+        "expected": "negative",
+        "actual": "negative"
+      },
+      "timestamp": "2024-11-20T15:45:19.910Z"
+    },
+    {
+      "metricName": "conceptsCoverage",
+      "score": 0.75,
+      "metadata": {
+        "found": 3,
+        "expected": 4
+      },
+      "timestamp": "2024-11-20T15:45:19.910Z"
+    },
+    {
+      "metricName": "entityRecognition",
+      "score": 1,
+      "metadata": {
+        "found": 1,
+        "expected": 1
+      },
+      "timestamp": "2024-11-20T15:45:19.910Z"
+    },
+    {
+      "metricName": "emotionalToneAccuracy",
+      "score": 1,
+      "metadata": {
+        "expected": "frustrated",
+        "actual": "frustrated"
+      },
+      "timestamp": "2024-11-20T15:45:19.910Z"
+    },
+    {
+      "metricName": "responseTime",
+      "score": 1,
+      "metadata": {
+        "duration": 1764
+      },
+      "timestamp": "2024-11-20T15:45:19.910Z"
+    },
+    {
+      "metricName": "confidenceAccuracy",
+      "score": 0.9,
+      "metadata": {
+        "expected": 0.85,
+        "actual": 0.95
+      },
+      "timestamp": "2024-11-20T15:45:19.910Z"
+    }
+  ]
+}

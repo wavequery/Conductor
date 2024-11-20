@@ -21,7 +21,7 @@ import dotenv from "dotenv";
 
 dotenv.configDotenv();
 
-class CodeAnalyzerTool extends BaseTool implements Tool {
+export class CodeAnalyzerTool extends BaseTool implements Tool {
   private logger = new Logger({
     level: LogLevel.DEBUG,
     prefix: "CodeAnalyzer",
@@ -133,7 +133,7 @@ class CodeAnalyzerTool extends BaseTool implements Tool {
   }
 }
 
-class SecurityScannerTool extends BaseTool implements Tool {
+export class SecurityScannerTool extends BaseTool implements Tool {
   private logger = new Logger({
     level: LogLevel.DEBUG,
     prefix: "SecurityScanner",
@@ -231,7 +231,7 @@ class SecurityScannerTool extends BaseTool implements Tool {
   }
 }
 
-class DocumentationGeneratorTool extends BaseTool implements Tool {
+export class DocumentationGeneratorTool extends BaseTool implements Tool {
   private logger = new Logger({
     level: LogLevel.DEBUG,
     prefix: "DocumentationGenerator",
@@ -494,16 +494,17 @@ async function runCodeReviewChain() {
     graphManager.updateNode("processor", {
       status: "completed",
       data: {
-        duration: result.metrics.duration,
-        totalSteps: result.steps.length,
+        duration: result?.metrics?.duration,
+        totalSteps: result?.steps?.length,
       },
     });
 
     logger.info("Code review completed", {
-      duration: result.metrics.duration,
-      steps: result.steps.length,
-      output: result.output,
+      duration: result?.metrics?.duration,
+      steps: result?.steps?.length,
+      output: result?.output,
     });
+    
   } catch (error) {
     logger.error("Code review failed:", error);
 

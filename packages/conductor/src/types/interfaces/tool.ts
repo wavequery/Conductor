@@ -1,7 +1,10 @@
+import { ToolConfig } from "../schemas/tool-config";
+
 export interface Tool {
   name: string;
   description: string;
   version?: string;
+  input?: ToolConfig['input'];
   execute(input: any): Promise<any>;
 }
 

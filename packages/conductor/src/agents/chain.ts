@@ -7,11 +7,13 @@ export class Chain extends Agent {
   constructor(config: ChainConfig) {
     super(config);
     this.config = config;
+    this.steps = [];
   }
 
   public async runAgentLoop(input: any): Promise<any> {
     let currentInput = input;
-
+    const startTime = Date.now();
+    
     for (const step of this.config.steps) {
       const stepResult = await this.executeChainStep(step, currentInput);
       this.steps.push(stepResult);
@@ -24,7 +26,13 @@ export class Chain extends Agent {
       currentInput = {...input ,...stepResult.output};
     }
 
-    return currentInput;
+    return { 
+      output: currentInput,
+      metrics: {
+        duration: Date.now() - startTime
+      },
+      steps:  this.steps 
+    };
   }
 
   private async executeChainStep(

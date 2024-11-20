@@ -9,6 +9,12 @@
   "imports": {
     "@/*": "./dist/cjs/*"
   },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md",
+    ".env.example"
+  ],
   "exports": {
     ".": {
       "require": "./dist/cjs/index.js",

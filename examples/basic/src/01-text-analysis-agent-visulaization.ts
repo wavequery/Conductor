@@ -24,7 +24,7 @@ import dotenv from "dotenv";
 
 dotenv.configDotenv();
 
-class TextAnalysisTool extends BaseTool implements Tool {
+export class TextAnalysisTool extends BaseTool implements Tool {
   private logger = new Logger({
     level: LogLevel.DEBUG,
     prefix: "TextAnalysis",

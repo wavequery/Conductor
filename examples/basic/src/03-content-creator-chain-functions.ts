@@ -14,10 +14,11 @@ import {
   BaseTool,
   ChainConfig,
   ToolType,
+  LLMFunction,
   ToolExecutionMode,
 } from "@wavequery/conductor";
 
-class ContentGeneratorTool extends BaseTool implements Tool {
+export class ContentGeneratorTool extends BaseTool implements Tool {
   private logger = new Logger({
     level: LogLevel.DEBUG,
     prefix: "ContentGenerator",
@@ -56,6 +57,32 @@ class ContentGeneratorTool extends BaseTool implements Tool {
     });
   }
 
+  private generateFunction: LLMFunction = {
+    name: "generateBlogPost",
+    description: "Generate a blog post from a topic and outline",
+    parameters: {
+      type: "object",
+      properties: {
+        title: { type: "string", description: "Title of the blog post" },
+        introduction: { type: "string", description: "Introduction paragraph" },
+        sections: {
+          type: "array",
+          items: {
+            type: "object",
+            properties: {
+              heading: { type: "string" },
+              content: { type: "string" },
+              keywords: { type: "array", items: { type: "string" } },
+            },
+            required: ["heading", "content", "keywords"],
+          },
+        },
+        conclusion: { type: "string", description: "Concluding paragraph" },
+      },
+      required: ["title", "introduction", "sections", "conclusion"],
+    },
+  };
+
   async execute(input: {
     topic: string;
     outline: string[];
@@ -64,7 +91,7 @@ class ContentGeneratorTool extends BaseTool implements Tool {
   }): Promise<ToolResult> {
     const startTime = Date.now();
     try {
-      this.logger.debug("Starting content generation");
+      this.logger.debug("Starting content generation with functions");
 
       const llm = new OpenAIProvider({
         apiKey: config?.openai?.apiKey || "",
@@ -79,28 +106,19 @@ class ContentGeneratorTool extends BaseTool implements Tool {
         Follow this outline:
         ${input.outline.map((item, i) => `${i + 1}. ${item}`).join("\n")}
 
-        Format as JSON:
-        {
-          "title": string,
-          "introduction": string,
-          "sections": Array<{
-            "heading": string,
-            "content": string,
-            "keywords": string[]
-          }>,
-          "conclusion": string
-        }
+        Use the generateBlogPost function to structure the response.
       `;
 
-      const response = await llm.complete(prompt, {
-        responseFormat: "json_object",
-      });
+      const response = await llm.completeWithFunctions(prompt, [
+        this.generateFunction,
+      ]);
 
       return {
         success: true,
-        data: JSON.parse(response.content),
+        data: response.functionCall?.arguments || response.content,
         metrics: {
           duration: Date.now() - startTime,
+          tokens: response.usage?.totalTokens,
         },
       };
     } catch (error) {
@@ -116,13 +134,52 @@ class ContentGeneratorTool extends BaseTool implements Tool {
   }
 }
 
-class SEOOptimizerTool extends BaseTool implements Tool {
-  private logger = new Logger({
-    level: LogLevel.DEBUG,
-    prefix: "SEOOptimizer",
-  });
+export class SEOOptimizerTool extends BaseTool implements Tool {
+  private seoFunction: LLMFunction = {
+    name: "optimizeForSEO",
+    description: "Optimize content for search engines",
+    parameters: {
+      type: "object",
+      properties: {
+        title: {
+          type: "string",
+          description: "SEO optimized title",
+        },
+        metaDescription: {
+          type: "string",
+          description: "Meta description for search results",
+        },
+        optimizedSections: {
+          type: "array",
+          items: {
+            type: "object",
+            properties: {
+              heading: { type: "string" },
+              content: { type: "string" },
+              keywords: { type: "array", items: { type: "string" } },
+            },
+          },
+        },
+        suggestedTags: {
+          type: "array",
+          items: { type: "string" },
+        },
+        seoScore: {
+          type: "number",
+          description: "SEO score from 0-100",
+        },
+      },
+      required: [
+        "title",
+        "metaDescription",
+        "optimizedSections",
+        "suggestedTags",
+        "seoScore",
+      ],
+    },
+  };
 
-  constructor() {
+    constructor() {
     super({
       name: "seo-optimizer",
       type: ToolType.TRANSFORMATION,
@@ -170,29 +227,19 @@ class SEOOptimizerTool extends BaseTool implements Tool {
         ${JSON.stringify(input.content, null, 2)}
         ${input.keywords ? `Target keywords: ${input.keywords.join(", ")}` : ""}
 
-        Return optimized version as JSON with:
-        {
-          "title": string (SEO optimized),
-          "metaDescription": string,
-          "optimizedSections": Array<{
-            "heading": string,
-            "content": string,
-            "keywords": string[]
-          }>,
-          "suggestedTags": string[],
-          "seoScore": number
-        }
+        Use the optimizeForSEO function to provide optimized content.
       `;
 
-      const response = await llm.complete(prompt, {
-        responseFormat: "json_object",
-      });
+      const response = await llm.completeWithFunctions(prompt, [
+        this.seoFunction,
+      ]);
 
       return {
         success: true,
-        data: JSON.parse(response.content),
+        data: response.functionCall?.arguments || response.content,
         metrics: {
           duration: Date.now() - startTime,
+          tokens: response.usage?.totalTokens,
         },
       };
     } catch (error) {
@@ -208,13 +255,52 @@ class SEOOptimizerTool extends BaseTool implements Tool {
   }
 }
 
-class ContentEditorTool extends BaseTool implements Tool {
-  private logger = new Logger({
-    level: LogLevel.DEBUG,
-    prefix: "ContentEditor",
-  });
+export class ContentEditorTool extends BaseTool implements Tool {
+  private editFunction: LLMFunction = {
+    name: "editContent",
+    description: "Edit and improve content quality",
+    parameters: {
+      type: "object",
+      properties: {
+        title: { type: "string" },
+        content: {
+          type: "object",
+          properties: {
+            introduction: { type: "string" },
+            sections: {
+              type: "array",
+              items: {
+                type: "object",
+                properties: {
+                  heading: { type: "string" },
+                  content: { type: "string" },
+                },
+              },
+            },
+            conclusion: { type: "string" },
+          },
+        },
+        improvements: {
+          type: "array",
+          items: {
+            type: "object",
+            properties: {
+              type: { type: "string" },
+              description: { type: "string" },
+              location: { type: "string" },
+            },
+          },
+        },
+        readabilityScore: {
+          type: "number",
+          description: "Readability score from 0-100",
+        },
+      },
+      required: ["title", "content", "improvements", "readabilityScore"],
+    },
+  };
 
-  constructor() {
+    constructor() {
     super({
       name: "content-editor",
       type: ToolType.TRANSFORMATION,
@@ -264,35 +350,19 @@ class ContentEditorTool extends BaseTool implements Tool {
         Style: ${input.style || "professional"}
         ${input.suggestions ? `Consider these suggestions: ${input.suggestions.join(", ")}` : ""}
 
-        Return improved version as JSON with:
-        {
-          "title": string,
-          "content": {
-            "introduction": string,
-            "sections": Array<{
-              "heading": string,
-              "content": string
-            }>,
-            "conclusion": string
-          },
-          "improvements": Array<{
-            "type": string,
-            "description": string,
-            "location": string
-          }>,
-          "readabilityScore": number
-        }
+        Use the editContent function to return improved content.
       `;
 
-      const response = await llm.complete(prompt, {
-        responseFormat: "json_object",
-      });
+      const response = await llm.completeWithFunctions(prompt, [
+        this.editFunction,
+      ]);
 
       return {
         success: true,
-        data: JSON.parse(response.content),
+        data: response.functionCall?.arguments || response.content,
         metrics: {
           duration: Date.now() - startTime,
+          tokens: response.usage?.totalTokens,
         },
       };
     } catch (error) {

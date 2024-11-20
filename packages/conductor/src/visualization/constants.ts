@@ -11,6 +11,7 @@ export const DEFAULT_CONFIG: Required<VisualizationConfig> = {
     llm: { strokeWidth: 3 },
     data: { strokeWidth: 2 },
     system: { strokeWidth: 4 },
+    metric: { strokeWidth: 4 }
   },
   edgeTypes: {
     flow: { strokeDasharray: "5,5" },

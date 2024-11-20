@@ -1,9 +1,9 @@
 import { SimulationNodeDatum, SimulationLinkDatum } from 'd3';
 
-export type NodeType = 'agent' | 'tool' | 'llm' | 'data' | 'system';
+export type NodeType = 'agent' | 'tool' | 'llm' | 'data' | 'system' | 'metric';
 export type EdgeType = 'flow' | 'data' | 'control';
 export type ThemeType = 'light' | 'dark';
-export type NodeStatus = 'pending' | 'running' | 'completed' | 'error';
+export type NodeStatus = 'pending' | 'running' | 'completed' | 'error' | 'warning';
 
 export interface Position {
   x: number;

@@ -33,6 +33,10 @@ export abstract class BaseTool extends EventEmitter implements Tool {
     return this.config.description;
   }
 
+  get input(): ToolConfig['input'] {
+    return this.config.input;
+  }
+
   abstract execute(input: any, context?: ToolContext): Promise<ToolResult>;
 
   protected validateConfig(config: ToolConfig): void {

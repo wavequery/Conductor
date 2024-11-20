@@ -1,4 +1,4 @@
-import { SQLTestCase } from "@/types/interfaces/evaluation";
+import { SQLTestCase } from "./evaluation";
 
 export interface MetricResult {
   value: number;
