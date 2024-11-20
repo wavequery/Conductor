@@ -5,7 +5,11 @@
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
-  "private": true,
+  "private": false,
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "imports": {
     "@/*": "./dist/cjs/*"
   },
@@ -31,7 +35,9 @@
     "lint": "eslint . --ext .ts",
     "format": "prettier --write \"src/**/*.ts\"",
     "prepare": "yarn build",
-    "dev": "ts-node-dev --respawn --transpile-only src/index.ts"
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "yarn clean && yarn build"
   },
   "keywords": [
     "llm",
@@ -43,7 +49,12 @@
     "openai",
     "transformers",
     "visualization",
-    "testing"
+    "testing",
+    "chat",
+    "chatgpt",
+    "evals",
+    "wavequery",
+    "websocket"
   ],
   "dependencies": {
     "@anthropic-ai/sdk": "^0.17.1",

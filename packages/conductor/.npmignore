@@ -1,6 +1,7 @@
 src/
 node_modules/
 tests/
+scripts/
 .github/
 .git/
 .gitignore
@@ -12,3 +13,6 @@ tsconfig*.json
 *.tgz
 coverage/
 docs/
+coverage/
+.env*
+setup.md
