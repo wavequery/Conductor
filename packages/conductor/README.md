@@ -122,8 +122,9 @@ const strategyAgent = new Agent({
 
 ## Contributing
 
-This is a private package at this stage. For contribution guidelines, please contact the package maintainers.
-We plan to transition to become open source in the future. Stay tuned!
+We are extremely open to contributions, whether it be in the form of a new feature, improved infrastructure, or better documentation.
+
+Please make a PR on github! Contribution guide will be added soon.
 
 ## License
 
