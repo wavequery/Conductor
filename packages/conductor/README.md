@@ -1,30 +1,28 @@
-# WaveQuery LLM Conductor Framework
+# Conductor | LLM Orchestration Framework
 
 ![DEMO](https://s11.gifyu.com/images/SGsPZ.gif)
 
 <div align="center">
   <p>
+      <h3>Orchestrate, Visualize, and Master Your LLM Workflows</h3>
+  <p>
     <a href="https://www.npmjs.com/package/@wavequery/conductor">
       <img src="https://img.shields.io/npm/v/@wavequery/conductor.svg" alt="npm version" />
     </a>
-    <a href="https://github.com/wavequery/conductor/blob/main/LICENSE">
-      <img src="https://img.shields.io/npm/l/@wavequery/conductor.svg" alt="license" />
-    </a>
-    <a href="https://github.com/wavequery/conductor/tree/main/examples">
-      <img src="https://img.shields.io/badge/examples-view%20demos-blue.svg" alt="examples" />
-    </a>
+    <img src="https://img.shields.io/badge/TypeScript-Ready-blue" alt="TypeScript Ready" />
+    <img src="https://img.shields.io/badge/Node.js-%3E%3D20-green" alt="Node.js Version" />
+  </p>
   </p>
 </div>
 
+Build powerful AI applications with real-time visualization and dynamic orchestration. Conductor helps you create, monitor, and control complex LLM workflows through an intuitive chain and agent system.
 
-An advanced LLM orchestration framework for building intelligent applications with real-time visualization capabilities. Build complex AI workflows by combining chains and agents with visualization tools.
+## Features
 
-## ✨ Features
-
--  **Chain & Agent System**: Build complex workflows combining multiple LLM tools
--  **Real-time Visualization**: Monitor your LLM operations with interactive graphs
--  **Modular Architecture**: Easily extend with custom tools and capabilities
--  **Multiple LLM Support**: Works with OpenAI, Anthropic, and more
+- **Chain & Agent System**: Build complex workflows combining multiple LLM tools
+- **Real-time Visualization**: Monitor your LLM operations with interactive graphs
+- **Modular Architecture**: Easily extend with custom tools and capabilities
+- **Multiple LLM Support**: Works with OpenAI, Anthropic, and more
 - **Performance Tracking**: Built-in metrics and logging
 - **Type Safety**: Full TypeScript support
 - **Customizable UI**: Flexible visualization options
@@ -37,115 +35,96 @@ npm install @wavequery/conductor
 yarn add @wavequery/conductor
 ```
 
-### Basic Chain Example
+### Create Your First Chain
 ```typescript
-import { Chain, OpenAIProvider } from '@wavequery/conductor';
+import { Chain, OpenAIProvider, VizServer } from '@wavequery/conductor';
 
+// Initialize visualization
+const vizServer = new VizServer(3000);
+
+// Create your chain
 const chain = new Chain({
-  name: "simple-chain",
+  name: "analysis-chain",
   llmProvider: new OpenAIProvider({
     apiKey: process.env.OPENAI_API_KEY
   }),
-  tools: [/* your tools */],
+  tools: [analyzerTool, summarizerTool],
   steps: [
     {
-      name: "step-1",
-      tool: "your-tool",
-      input: {/* input data */}
+      name: "analyze",
+      tool: "analyzer",
+      input: { text: "Your text here" }
+    },
+    {
+      name: "summarize",
+      tool: "summarizer",
+      input: (prev) => ({
+        text: prev.analyze.text,
+        analysis: prev.analyze
+      })
     }
   ]
 });
 
+// Execute and visualize
 const result = await chain.runAgentLoop({});
+// Visit http://localhost:3000 to see your workflow in action
 ```
+
+## Featured Examples
 
 ### Market Analysis System
 ```typescript
-import { Chain, Agent, OpenAIProvider } from '@wavequery/conductor';
-
-// Setup tools
-const technicalAnalyzer = new TechnicalAnalyzerTool();
-const sentimentAnalyzer = new SentimentAnalyzerTool();
-
-// Create chain
 const analysisChain = new Chain({
   name: "market-analysis",
-  tools: [technicalAnalyzer, sentimentAnalyzer],
-  steps: [
-    {
-      name: "technical-analysis",
-      tool: "technical-analyzer",
-      input: {
-        marketData: {
-          symbol: "AAPL",
-          indicators: {/* data */}
-        }
-      }
-    }
-  ]
+  tools: [technicalAnalyzer, sentimentAnalyzer, riskAnalyzer],
+  steps: [/* steps */]
 });
 
-// Execute with visualization
-const vizServer = new VizServer();
-const result = await chain.runAgentLoop({});
-```
+const strategyAgent = new Agent({
+  name: "strategy-agent",
+  tools: [strategyGenerator, reportGenerator]
+});
 
-[View full market analysis example →](examples/market-analysis/README.md)
+// Real-time visualization included!
+```
+[View Full Example →](examples/market-analysis/README.md)
 
 ## 📚 Documentation
 
 ### Core Concepts
 - [Getting Started](docs/getting-started.md)
-- [Chains vs Agents](docs/core-concepts/chains-and-agents.md)
-- [Visualization System](docs/core-concepts/visualization.md)
+- [Chains vs Agents](docs/core/chains-and-agents.md)
+- [Visualization System](docs/core/visualization.md)
 
 ### Guides
 - [Building Your First Chain](docs/guides/first-chain.md)
 - [Creating Custom Tools](docs/guides/custom-tools.md)
 - [Working with Agents](docs/guides/agents.md)
 - [Real-time Visualization](docs/guides/visualization.md)
-- [Error Handling](docs/guides/error-handling.md)
-- [Performance Optimization](docs/guides/performance.md)
 
-### API Reference
-- [Chain API](docs/api/chain.md)
-- [Agent API](docs/api/agent.md)
-- [Tool API](docs/api/tool.md)
-- [LLM Providers](docs/api/llm-providers.md)
-- [Visualization API](docs/api/visualization.md)
-- [Configuration](docs/api/configuration.md)
-- [Types](docs/api/types.md)
+### Example Projects
+- [📝 Text Analysis](docs/examples/text-analysis/README.md)
+  - Single Agent with Tool
+  - Real-time visualization
+- [📊 Market Analysis](docs/examples/market-analysis/README.md)
+  - Multi-Chain workflow
+  - Agent-based decision making
+- [✍️ Content Generation](docs/examples/content-generation/README.md)
+  - Pipeline architecture
+  - Multiple tool coordination
 
-### Examples
-- [Basic Chain](examples/basic-chain/README.md): Simple chain implementation
-- [Market Analysis](examples/market-analysis/README.md): Complete market analysis system
-- [Text Analysis](examples/text-analysis/README.md): Text processing with visualization
-- [Content Generation](examples/content-generation/README.md): Content generation system
-- [Multi-Agent System](examples/multi-agent/README.md): Complex multi-agent workflow
+## Requirements
 
-## 🌟 Featured Example
-
-### Market Analysis System
-
-- Real-time market data analysis
-- Technical and sentiment analysis
-- Risk assessment
-- Strategy generation
-- [View Code →](examples/market-analysis/README.md)
-
-
-
-## 🛡️ Requirements
-
-- Node.js >= 18.0.0
+- Node.js >= 20.0.0
 - OpenAI API key and/or Anthropic API key
-- Environment variables setup (see [Configuration Guide](docs/guides/configuration.md))
+- Environment variables setup (see [Configuration Guide](docs/getting-started.md))
 
-## 🤝 Contributing
+## Contributing
 
 This is a private package at this stage. For contribution guidelines, please contact the package maintainers.
 We plan to transition to become open source in the future. Stay tuned!
 
-## 📜 License
+## License
 
 MIT © [WaveQuery](https://wavequery.com/)
