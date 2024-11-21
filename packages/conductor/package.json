@@ -1,6 +1,6 @@
 {
   "name": "@wavequery/conductor",
-  "version": "0.0.23",
+  "version": "0.0.24",
   "description": "Modular LLM orchestration framework",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
