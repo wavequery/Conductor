@@ -88,29 +88,29 @@ const strategyAgent = new Agent({
 
 // Real-time visualization included!
 ```
-[View Full Example →](examples/market-analysis/README.md)
+[View Full Example →](examples/basic/src/04-multi-tool-agent-visualization.ts)
 
 ## 📚 Documentation
 
 ### Core Concepts
-- [Getting Started](docs/getting-started.md)
-- [Chains vs Agents](docs/core/chains-and-agents.md)
-- [Visualization System](docs/core/visualization.md)
+- [Getting Started](packages/conductor/docs/getting-started.md)
+- [Chains vs Agents](packages/conductor/docs/core/chains-and-agents.md)
+- [Visualization System](packages/conductor/docs/core/visualization.md)
 
 ### Guides
-- [Building Your First Chain](docs/guides/first-chain.md)
-- [Creating Custom Tools](docs/guides/custom-tools.md)
-- [Working with Agents](docs/guides/agents.md)
-- [Real-time Visualization](docs/guides/visualization.md)
+- [Building Your First Chain](packages/conductor/docs/guides/first-chain.md)
+- [Creating Custom Tools](packages/conductor/docs/guides/custom-tools.md)
+- [Working with Agents](packages/conductor/docs/guides/agents.md)
+- [Real-time Visualization](packages/conductor/docs/guides/visualization.md)
 
 ### Example Projects
-- [📝 Text Analysis](docs/examples/text-analysis/README.md)
+- [📝 Text Analysis](packages/conductor/docs/examples/text-analysis/README.md)
   - Single Agent with Tool
   - Real-time visualization
-- [📊 Market Analysis](docs/examples/market-analysis/README.md)
+- [📊 Market Analysis](packages/conductor/docs/examples/market-analysis/README.md)
   - Multi-Chain workflow
   - Agent-based decision making
-- [✍️ Content Generation](docs/examples/content-generation/README.md)
+- [✍️ Content Generation](packages/conductor/docs/examples/content-generation/README.md)
   - Pipeline architecture
   - Multiple tool coordination
 
@@ -118,7 +118,7 @@ const strategyAgent = new Agent({
 
 - Node.js >= 20.0.0
 - OpenAI API key and/or Anthropic API key
-- Environment variables setup (see [Configuration Guide](docs/getting-started.md))
+- Environment variables setup (see [Configuration Guide](packages/conductor/docs/getting-started.md))
 
 ## Contributing
 
