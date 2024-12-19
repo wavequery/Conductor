@@ -2,6 +2,7 @@
   "name": "@wavequery/conductor-example-basic",
   "private": true,
   "version": "0.0.1",
+  "packageManager": "yarn@1.22.22",
   "type": "module",
   "scripts": {
     "build": "rimraf dist && tsc",
@@ -9,7 +10,7 @@
     "dev:01": "tsx src/01-text-analysis-agent.ts"
   },
   "dependencies": {
-    "@wavequery/conductor": "^0.0.1"
+    "@wavequery/conductor": "^0.0.24"
   },
   "devDependencies": {
     "dotenv": "^16.4.5",

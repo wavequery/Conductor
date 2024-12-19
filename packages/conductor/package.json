@@ -2,6 +2,7 @@
   "name": "@wavequery/conductor",
   "version": "0.0.24",
   "description": "Modular LLM orchestration framework",
+  "packageManager": "yarn@1.22.22",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
@@ -108,7 +109,7 @@
     "type": "git",
     "url": "git+https://github.com/wavequery/conductor.git"
   },
-  "homepage": "https://github.com/wavequery/conductor/packages/conductor#readme",
+  "homepage": "https://github.com/wavequery/conductor/packages/conductor/README.md",
   "author": "amin@wavequery.com",
   "license": "MIT"
 }
