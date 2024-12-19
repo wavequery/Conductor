@@ -49,6 +49,7 @@ export { MetricsCollector } from "./utils/metrics-collector";
 export { ConfigManager } from "./utils/config-manager";
 
 // Types
+export { StoreProvider } from "./types/interfaces/memory";
 export type {
   AgentConfig,
   AgentResponse,
